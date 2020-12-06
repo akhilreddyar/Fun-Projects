@@ -2,9 +2,9 @@ import java.io.*;
 import java.util.*;
 class comp{
 public static void main(String[] args) { 
-    String input1 = "C:/Users/priyanka/Desktop/Ekanshcomp\\input.txt";
-    String output="C:/Users/priyanka/Desktop/Ekanshcomp\\testout.cmp";
-    String origin="C:/Users/priyanka/Desktop/Ekanshcomp\\original.txt";
+    String input1 = "input.txt";
+    String output="testout.cmp";
+    String origin="original.txt";
     compress(input1,output);
     System.out.println("Compressed Successfully...");
     decomp(output,origin);
