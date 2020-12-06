@@ -1,0 +1,77 @@
+import java.io.*;
+import java.util.*;
+class comp{
+public static void main(String[] args) { 
+    String input1 = "C:/Users/priyanka/Desktop/Ekanshcomp\\input.txt";
+    String output="C:/Users/priyanka/Desktop/Ekanshcomp\\testout.cmp";
+    String origin="C:/Users/priyanka/Desktop/Ekanshcomp\\original.txt";
+    compress(input1,output);
+    System.out.println("Compressed Successfully...");
+    decomp(output,origin);
+    System.out.println("DeCompressed Successfully...");
+  }     
+    static void compress(String input,String output){
+    	 try {
+    		 	File f = new File(input);
+    		    Scanner myReader = new Scanner(f);
+    		    FileWriter fw=new FileWriter(output);
+    		    HashMap<String,Integer> hm = new HashMap<>();
+    		    int count=1;
+    		    while (myReader.hasNextLine()) {
+    		      String data = myReader.nextLine();
+    		      String[] inp1 = data.split(" ");
+    		      for(String h:inp1) {
+    		      if(hm.containsKey(h)) {
+    		    	  int val = hm.get(h);
+    		    	  String out = val+" ";
+    		    	  fw.write(out);  
+    		      }else {
+    		    	  hm.put(h,count);
+    		    	  fw.write(h+" ");
+    		    	  count++;
+    		      }
+    		      }
+    		      fw.write("\n");
+    		    }    
+    		    fw.close();
+    		    myReader.close();
+    		    }
+    		    catch(Exception sds) {
+    		    	System.out.print("Error.....");
+    		    }
+    }
+    static void decomp(String input,String output) {
+    	try {
+    		File f = new File(input);
+		    Scanner myReader = new Scanner(f);
+		    FileWriter fw=new FileWriter(output);
+		    HashMap<Integer,String> hm = new HashMap<>();
+		    int count =1;
+		    while (myReader.hasNextLine()) {
+  		      String data = myReader.nextLine();
+  		      String[] temp = data.split(" ");
+  		      for(String g:temp) {
+  		    	int k = 0;
+  		    	try {
+  		    	 k = Integer.parseInt(g);
+  		    	fw.write(hm.get(k)+" ");
+  		    	
+  		    	}
+  		    	catch(Exception e) {
+  		    		fw.write(g+" ");
+  		    		hm.put(count,g);
+  		    		count++;
+  		    	}
+  		    	
+  		      }
+  		    fw.write("\n");
+		    }
+		    myReader.close();
+		    fw.close();
+		    
+    	}
+    	 catch(Exception sds) {
+		    	System.out.print("Error.....");
+		    }
+    }
+}
